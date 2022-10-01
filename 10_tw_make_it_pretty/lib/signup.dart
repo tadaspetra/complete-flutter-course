@@ -10,7 +10,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _signUpKey = GlobalKey<FormState>();
 
   RegExp emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
@@ -18,7 +18,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
-        key: _formKey,
+        key: _signUpKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -87,7 +87,7 @@ class _SignUpState extends State<SignUp> {
               decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(30)),
               child: TextButton(
                 onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
+                  if (_signUpKey.currentState!.validate()) {
                     debugPrint('Email: ${emailController.text}');
                     debugPrint('Password: ${passwordController.text}');
                   }
