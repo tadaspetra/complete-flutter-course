@@ -102,7 +102,6 @@ class _SignInState extends State<SignIn> {
                         password: passwordController.text,
                       );
                     } catch (e) {
-                      print(e);
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
                     }
 
