@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:context/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +12,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -104,6 +107,9 @@ class _SignUpState extends State<SignUp> {
                         email: emailController.text,
                         password: passwordController.text,
                       );
+                      await _firestore.collection('user').add(
+                            FirebaseUser(email: emailController.text).toMap(),
+                          );
                       if (!mounted) return;
                       Navigator.pop(context);
                     } catch (e) {

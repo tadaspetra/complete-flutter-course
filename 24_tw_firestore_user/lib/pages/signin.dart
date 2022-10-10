@@ -1,28 +1,28 @@
+import 'package:context/pages/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class SignIn extends StatefulWidget {
+  const SignIn({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<SignIn> createState() => _SignInState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignInState extends State<SignIn> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final GlobalKey<FormState> _signUpKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _signInKey = GlobalKey<FormState>();
 
-  RegExp emailValid = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+  RegExp emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
-        key: _signUpKey,
+        key: _signInKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -34,7 +34,7 @@ class _SignUpState extends State<SignUp> {
               height: 20,
             ),
             const Text(
-              'Sign up to Twitter',
+              'Log in to Twitter',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Container(
@@ -50,8 +50,7 @@ class _SignUpState extends State<SignUp> {
                 decoration: const InputDecoration(
                   hintText: 'Enter your email',
                   border: InputBorder.none,
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                  contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                 ),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
@@ -76,8 +75,7 @@ class _SignUpState extends State<SignUp> {
                 decoration: const InputDecoration(
                   hintText: 'Password',
                   border: InputBorder.none,
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                  contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                 ),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
@@ -94,36 +92,35 @@ class _SignUpState extends State<SignUp> {
             ),
             Container(
               width: 250,
-              decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(30)),
+              decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(30)),
               child: TextButton(
                 onPressed: () async {
-                  if (_signUpKey.currentState!.validate()) {
+                  if (_signInKey.currentState!.validate()) {
                     try {
-                      await _auth.createUserWithEmailAndPassword(
+                      await _auth.signInWithEmailAndPassword(
                         email: emailController.text,
                         password: passwordController.text,
                       );
-                      if (!mounted) return;
-                      Navigator.pop(context);
                     } catch (e) {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text(e.toString())));
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
                     }
+
+                    debugPrint('Email: ${emailController.text}');
+                    debugPrint('Password: ${passwordController.text}');
                   }
                 },
                 child: const Text(
-                  'Sign Up',
+                  'Login',
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ),
             ),
             TextButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SignUp()));
               },
               child: const Text(
-                'Already have an account? Log in',
+                'Don\'t have an account? Sign up here',
               ),
             ),
           ],
