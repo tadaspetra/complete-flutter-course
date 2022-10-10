@@ -1,0 +1,6 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+brew "gh"
+brew "node", link: false
+cask "ytmdesktop-youtube-music"
