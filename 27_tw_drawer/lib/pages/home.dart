@@ -41,15 +41,14 @@ class Home extends ConsumerWidget {
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
-            SafeArea(
-              child: CircleAvatar(
-                radius: 100,
-                foregroundImage: currentUser.user.profilePic.isEmpty
-                    ? const NetworkImage("http://www.gravatar.com/avatar/?d=mp")
-                    : NetworkImage(currentUser.user.profilePic),
+            Image.network(currentUser.user.profilePic),
+            ListTile(
+              title: Text(
+                "Hello ${currentUser.user.name}",
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
-            Center(child: Text("Hello ${currentUser.user.name}")),
             const SizedBox(
               height: 50,
             ),

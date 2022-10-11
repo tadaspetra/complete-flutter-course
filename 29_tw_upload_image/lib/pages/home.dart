@@ -19,9 +19,7 @@ class Home extends ConsumerWidget {
             child: Container(
               padding: const EdgeInsets.all(8),
               child: CircleAvatar(
-                foregroundImage: currentUser.user.profilePic.isEmpty
-                    ? const NetworkImage("http://www.gravatar.com/avatar/?d=mp")
-                    : NetworkImage(currentUser.user.profilePic),
+                foregroundImage: NetworkImage(currentUser.user.profilePic),
                 onForegroundImageError: (exception, stackTrace) {},
               ),
             ),
