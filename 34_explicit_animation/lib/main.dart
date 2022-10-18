@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Implicit Animation"),
+        title: const Text("Explicit Animation"),
       ),
       body: Center(
         child: Column(
