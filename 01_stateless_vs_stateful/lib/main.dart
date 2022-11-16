@@ -50,6 +50,12 @@ class _SecondColumnState extends State<SecondColumn> {
   bool liked = false;
 
   @override
+  void initState() {
+    super.initState();
+    liked = true;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
