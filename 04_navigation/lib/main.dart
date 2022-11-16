@@ -47,8 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.push(
-                  context,
+                Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const SecondRoute()),
                 );
               },

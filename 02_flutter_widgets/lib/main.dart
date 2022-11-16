@@ -37,27 +37,11 @@ class _MyHomePageState extends State<MyHomePage> {
             color: Colors.lightBlue,
             height: 100,
             child: PageView(
-              children: const [Center(child: Text("page 1")), Text("page 2"), Text("Page 3")],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.all(40),
-            padding: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              //shape: BoxShape.circle,
-              border: Border.all(color: Colors.red, width: 20),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            alignment: Alignment.center,
-            height: 200,
-            width: 200,
-            transform: Matrix4.rotationZ(0.1),
-            child: const Text(
-              'Container',
-              style: TextStyle(
-                color: Colors.white,
-              ),
+              children: const [
+                Center(child: Text("page 1")),
+                Text("page 2"),
+                Text("Page 3")
+              ],
             ),
           ),
           Container(

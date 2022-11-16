@@ -38,7 +38,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text("I'm a SnackBar!")),
             );
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SecondPage()));
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const SecondPage(),
+            ));
           },
         ),
       ),
