@@ -24,47 +24,72 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final PageController controller = PageController();
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Stateless Demo"),
+        title: const Text("Widget Demo"),
       ),
       body: Column(
-        children: [
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
           Container(
-            color: Colors.lightBlue,
-            height: 100,
+            height: 200,
+            width: 200,
+            margin: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black, width: 20),
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.blue,
+            ),
             child: PageView(
               children: const [
-                Center(child: Text("page 1")),
-                Text("page 2"),
-                Text("Page 3")
+                Text(
+                  "Tadas",
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+                Text(
+                  "Page 2",
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+                Text(
+                  "Last Page",
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
               ],
             ),
           ),
-          Container(
-            margin: const EdgeInsets.all(40),
-            padding: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              //shape: BoxShape.circle,
-              border: Border.all(color: Colors.red, width: 20),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            alignment: Alignment.center,
-            height: 200,
-            width: 200,
-            transform: Matrix4.rotationZ(0.1),
-            child: const Text(
-              'Container',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Text("Tadas "),
+              Text("Andrei"),
+            ],
+          ),
+          const Text(
+            'You have pushed the button this many times:',
+          ),
+          Text(
+            '$_counter',
+            style: Theme.of(context).textTheme.headline4,
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
       ),
     );
   }

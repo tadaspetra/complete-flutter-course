@@ -44,16 +44,17 @@ class _MyHomePageState extends State<MyHomePage> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const FirstRoute(text: "hey there")),
+                  MaterialPageRoute(
+                      builder: (context) => const FirstRoute(text: "Tadas")),
                 );
               },
               child: const Text("Go To First Route"),
             ),
             TextButton(
               onPressed: () async {
-                final response = await Navigator.pushNamed(context, '/second', arguments: "hey there #2");
-                if (!mounted) return;
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(response.toString())));
+                final response = await Navigator.pushNamed(context, '/second',
+                    arguments: "Andrei");
+                print(response);
               },
               child: const Text("Go To Second Route"),
             ),

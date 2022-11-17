@@ -1,4 +1,3 @@
-import 'package:context/second.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,18 +28,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Enter Title"),
+        title: const Text("BuildContext"),
       ),
       body: Center(
         child: TextButton(
           child: const Text("SnackBar"),
           onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("I'm a SnackBar!")),
-            );
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const SecondPage(),
-            ));
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text("I'm a Snackbar")));
           },
         ),
       ),

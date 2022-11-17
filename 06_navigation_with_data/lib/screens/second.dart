@@ -14,7 +14,7 @@ class SecondRoute extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(args.toString()),
+            Text("Hey $args"),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context, 'this comes from SecondRoute');
