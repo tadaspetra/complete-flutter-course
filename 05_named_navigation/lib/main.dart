@@ -1,6 +1,5 @@
-import 'package:context/screens/first.dart';
-import 'package:context/screens/second.dart';
-import 'package:context/screens/third.dart';
+import 'package:context/pages/first.dart';
+import 'package:context/pages/second.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,14 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        // When navigating to the "/" route, build the Home widget.
         '/': (context) => const MyHomePage(),
-        // When navigating to the "/second" route, build the FirstRoute widget.
-        '/first': (context) => const FirstRoute(),
-        // When navigating to the "/second" route, build the SecondRoute widget.
-        '/second': (context) => const SecondRoute(),
-        // defining the name in the Route
-        ThirdRoute.routeName: (context) => const ThirdRoute(),
+        '/first': (context) => const FirstPage(),
+        '/second': (context) => const SecondPage(),
       },
     );
   }
@@ -48,21 +42,15 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/first');
+                Navigator.of(context).pushNamed("/first");
               },
-              child: const Text("Go To First Route"),
+              child: const Text("First Page"),
             ),
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/second');
+                Navigator.pushNamed(context, "/second");
               },
-              child: const Text("Go To Second Route"),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, ThirdRoute.routeName);
-              },
-              child: const Text("Go To Third Route"),
+              child: const Text("Second Page"),
             ),
           ],
         ),

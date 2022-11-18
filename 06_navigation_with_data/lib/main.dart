@@ -1,5 +1,5 @@
-import 'package:context/screens/first.dart';
-import 'package:context/screens/second.dart';
+import 'package:context/pages/first.dart';
+import 'package:context/pages/second.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,10 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        // When navigating to the "/" route, build the Home widget.
         '/': (context) => const MyHomePage(),
-        // When navigating to the "/second" route, build the SecondRoute widget.
-        '/second': (context) => const SecondRoute(),
+        '/first': (context) => const FirstPage(),
+        '/second': (context) => const SecondPage(),
       },
     );
   }
@@ -45,18 +44,19 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                      builder: (context) => const FirstRoute(text: "Tadas")),
+                    builder: (context) => const FirstPage(name: "Tadas"),
+                  ),
                 );
               },
-              child: const Text("Go To First Route"),
+              child: const Text("First Page"),
             ),
             TextButton(
               onPressed: () async {
-                final response = await Navigator.pushNamed(context, '/second',
+                final response = await Navigator.pushNamed(context, "/second",
                     arguments: "Andrei");
                 print(response);
               },
-              child: const Text("Go To Second Route"),
+              child: const Text("Second Page"),
             ),
           ],
         ),
