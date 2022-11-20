@@ -37,7 +37,8 @@ class _CupertinoHomeState extends State<CupertinoHome> {
             ),
             Text(
               '$_counter',
-              style: CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle,
+              style:
+                  CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle,
             ),
           ],
         ),

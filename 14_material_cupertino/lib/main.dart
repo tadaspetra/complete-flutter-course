@@ -1,5 +1,3 @@
-import 'package:context/cupertinomain.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -51,11 +49,6 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context).push(CupertinoPageRoute(builder: (context) => const CupertinoHome()));
-                },
-                child: const Text("Go to Cupertino"))
           ],
         ),
       ),
