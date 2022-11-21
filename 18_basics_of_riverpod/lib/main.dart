@@ -23,8 +23,6 @@ class Home extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<String> user = ref.watch(userProvider);
-
     return Scaffold(
       appBar: AppBar(title: const Text("Riverpod Simplified")),
       body: Center(
@@ -37,14 +35,13 @@ class Home extends ConsumerWidget {
                 return Text(ref.read(normalProvider));
               }),
             ),
-            user.maybeWhen(
-              data: (String value) {
-                return Text(value);
-              },
-              orElse: () {
-                return const CircularProgressIndicator();
-              },
-            ),
+            ref.watch(messageProvider).when(data: (String value) {
+              return Text(value);
+            }, error: (err, stack) {
+              return Text(err.toString());
+            }, loading: () {
+              return const CircularProgressIndicator();
+            }),
           ],
         ),
       ),
