@@ -23,7 +23,7 @@ class Home extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<String> user = ref.watch(userProvider("secretstring"));
+    AsyncValue<String> user = ref.watch(userProvider);
 
     return Scaffold(
       appBar: AppBar(title: const Text("Riverpod Simplified")),
@@ -34,14 +34,7 @@ class Home extends ConsumerWidget {
             Text(ref.read(normalProvider)),
             Consumer(
               builder: ((context, ref, child) {
-                return ref.watch(userProvider("wrongsecretstring")).maybeWhen(
-                  data: (String value) {
-                    return Text(value);
-                  },
-                  orElse: () {
-                    return const CircularProgressIndicator();
-                  },
-                );
+                return Text(ref.read(normalProvider));
               }),
             ),
             user.maybeWhen(
@@ -51,9 +44,6 @@ class Home extends ConsumerWidget {
               orElse: () {
                 return const CircularProgressIndicator();
               },
-            ),
-            const SizedBox(
-              height: 100,
             ),
           ],
         ),

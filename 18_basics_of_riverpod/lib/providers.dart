@@ -1,4 +1,3 @@
-import 'package:context/database.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final normalProvider = Provider<String>((ref) {
@@ -6,9 +5,8 @@ final normalProvider = Provider<String>((ref) {
 });
 
 // user state for the app
-final userProvider = FutureProvider.autoDispose.family<String, String>((ref, str) async {
-  if (str == "secretstring") {
-    return "Tadas is the best Instructor";
-  }
-  return ref.read(databaseProvider).getUserData();
+final userProvider = FutureProvider<String>((ref) {
+  return Future.delayed(const Duration(seconds: 5), () {
+    return "A message from the Future";
+  });
 });
