@@ -1,32 +1,15 @@
-import 'package:context/second.dart';
 import 'package:context/state.dart';
 import 'package:context/state_holder.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const AppStateHolder(child: MyApp()));
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class SecondPage extends StatelessWidget {
+  const SecondPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("InheritedWidget"),
+        title: const Text("Second Screen"),
       ),
       body: Center(
         child: Column(
@@ -38,13 +21,6 @@ class HomePage extends StatelessWidget {
             Text(
               '${Provider.of(context).counter}',
               style: Theme.of(context).textTheme.headline4,
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const SecondPage()));
-              },
-              child: const Text("Second Page"),
             ),
           ],
         ),
