@@ -24,6 +24,7 @@ class Home extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     int counter = ref.watch(counterController);
+    CounterNotifier controller = ref.watch(counterController.notifier);
 
     return Scaffold(
       appBar: AppBar(title: const Text("Riverpod Simplified")),
@@ -41,7 +42,7 @@ class Home extends ConsumerWidget {
             ElevatedButton(
               child: const Text("Add"),
               onPressed: () {
-                ref.read(counterController.notifier).add();
+                controller.add();
               },
             ),
           ],
@@ -50,7 +51,7 @@ class Home extends ConsumerWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          ref.read(counterController.notifier).add();
+          controller.add();
         },
       ),
     );
