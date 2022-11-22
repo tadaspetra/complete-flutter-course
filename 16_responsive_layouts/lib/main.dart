@@ -1,6 +1,5 @@
+import 'package:context/layout_page.dart';
 import 'package:flutter/material.dart';
-
-import 'layout_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -86,8 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    //double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -97,7 +96,8 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.fromLTRB(8, 8, 40, 8),
             child: TextButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const LayoutPage()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const LayoutPage()));
               },
               child: const Text(
                 "Layout Builder ->",

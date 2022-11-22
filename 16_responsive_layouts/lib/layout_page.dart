@@ -70,15 +70,19 @@ class _LayoutPageState extends State<LayoutPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("LayoutBuilder"),
+        title: const Text("Layout Page"),
       ),
-      body: LayoutBuilder(builder: (context, constraints) {
-        if (constraints.maxWidth > 500) {
-          return _bigDisplay();
-        } else {
-          return _smallDisplay();
-        }
-      }),
+      body: Center(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            if (constraints.maxWidth > 500) {
+              return _bigDisplay();
+            } else {
+              return _smallDisplay();
+            }
+          },
+        ),
+      ),
     );
   }
 }
