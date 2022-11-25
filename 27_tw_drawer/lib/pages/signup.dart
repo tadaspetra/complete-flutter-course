@@ -1,4 +1,4 @@
-import 'package:context/controllers/user_state.dart';
+import 'package:context/providers/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -107,13 +107,14 @@ class _SignUpState extends ConsumerState<SignUp> {
                         password: passwordController.text,
                       );
                       await ref
-                          .read(usersProvider.notifier)
+                          .read(userProvider.notifier)
                           .signUp(emailController.text);
                       if (!mounted) return;
                       Navigator.pop(context);
                     } catch (e) {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text(e.toString())));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(e.toString())),
+                      );
                     }
                   }
                 },
