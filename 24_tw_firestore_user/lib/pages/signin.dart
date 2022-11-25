@@ -11,12 +11,12 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _signInKey = GlobalKey<FormState>();
 
-  RegExp emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+  RegExp emailValid = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,8 @@ class _SignInState extends State<SignIn> {
                 decoration: const InputDecoration(
                   hintText: 'Enter your email',
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                 ),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
@@ -75,7 +76,8 @@ class _SignInState extends State<SignIn> {
                 decoration: const InputDecoration(
                   hintText: 'Password',
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                 ),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
@@ -92,7 +94,8 @@ class _SignInState extends State<SignIn> {
             ),
             Container(
               width: 250,
-              decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(30)),
+              decoration: BoxDecoration(
+                  color: Colors.blue, borderRadius: BorderRadius.circular(30)),
               child: TextButton(
                 onPressed: () async {
                   if (_signInKey.currentState!.validate()) {
@@ -102,11 +105,10 @@ class _SignInState extends State<SignIn> {
                         password: passwordController.text,
                       );
                     } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(e.toString())),
+                      );
                     }
-
-                    debugPrint('Email: ${emailController.text}');
-                    debugPrint('Password: ${passwordController.text}');
                   }
                 },
                 child: const Text(
@@ -117,7 +119,8 @@ class _SignInState extends State<SignIn> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SignUp()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const SignUp()));
               },
               child: const Text(
                 'Don\'t have an account? Sign up here',

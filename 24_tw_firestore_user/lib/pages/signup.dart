@@ -107,14 +107,15 @@ class _SignUpState extends State<SignUp> {
                         email: emailController.text,
                         password: passwordController.text,
                       );
-                      await _firestore.collection('user').add(
+                      await _firestore.collection("users").add(
                             FirebaseUser(email: emailController.text).toMap(),
                           );
                       if (!mounted) return;
                       Navigator.pop(context);
                     } catch (e) {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text(e.toString())));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(e.toString())),
+                      );
                     }
                   }
                 },

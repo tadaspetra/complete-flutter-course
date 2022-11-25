@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 class FirebaseUser {
-  /// - dont include id in the json converters
-
   final String email;
 
   const FirebaseUser({
