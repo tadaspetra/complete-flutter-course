@@ -1,5 +1,5 @@
-import 'package:context/controllers/user_state.dart';
 import 'package:context/pages/signup.dart';
+import 'package:context/providers/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,7 +13,6 @@ class SignIn extends ConsumerStatefulWidget {
 
 class _SignInState extends ConsumerState<SignIn> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _signInKey = GlobalKey<FormState>();
@@ -108,11 +107,12 @@ class _SignInState extends ConsumerState<SignIn> {
                         password: passwordController.text,
                       );
                       ref
-                          .read(usersProvider.notifier)
+                          .read(userProvider.notifier)
                           .login(emailController.text);
                     } catch (e) {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text(e.toString())));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(e.toString())),
+                      );
                     }
                   }
                 },

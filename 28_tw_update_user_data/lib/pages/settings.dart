@@ -1,44 +1,39 @@
-import 'package:context/controllers/user_state.dart';
+import 'package:context/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SettingsPage extends ConsumerStatefulWidget {
-  const SettingsPage({super.key});
+class Settings extends ConsumerStatefulWidget {
+  const Settings({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _SettingsPageState();
+  ConsumerState<Settings> createState() => _SettingsState();
 }
 
-class _SettingsPageState extends ConsumerState<SettingsPage> {
-  TextEditingController nameController = TextEditingController();
-
-  @override
-  void initState() {
-    nameController.text = (ref.read(usersProvider).user.name == "No Name")
-        ? ""
-        : ref.read(usersProvider).user.name;
-    super.initState();
-  }
-
+class _SettingsState extends ConsumerState<Settings> {
+  final TextEditingController _nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    LocalUser currentUser = ref.watch(userProvider);
+    _nameController.text = currentUser.user.name;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: const Text("Settings")),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(children: [
-          TextFormField(
-            decoration: const InputDecoration(hintText: "Enter Your Name"),
-            controller: nameController,
-          ),
-          TextButton(
-              onPressed: () {
-                ref
-                    .read(usersProvider.notifier)
-                    .updateName(nameController.text);
-              },
-              child: const Text("Update")),
-        ]),
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: const InputDecoration(labelText: "Enter Your Name"),
+              controller: _nameController,
+            ),
+            TextButton(
+                onPressed: () {
+                  ref
+                      .read(userProvider.notifier)
+                      .updateName(_nameController.text);
+                },
+                child: const Text("Update"))
+          ],
+        ),
       ),
     );
   }
