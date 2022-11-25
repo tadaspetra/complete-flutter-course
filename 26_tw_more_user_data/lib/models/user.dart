@@ -1,15 +1,13 @@
 import 'dart:convert';
 
 class FirebaseUser {
-  /// - dont include id in the json converters
-
   final String email;
-  final String? name;
+  final String name;
   final String profilePic;
 
   const FirebaseUser({
     required this.email,
-    this.name,
+    required this.name,
     required this.profilePic,
   });
 
@@ -36,8 +34,8 @@ class FirebaseUser {
   factory FirebaseUser.fromMap(Map<String, dynamic> map) {
     return FirebaseUser(
       email: map['email'] ?? '',
-      name: map['name'],
-      profilePic: map['profilePic'] ?? "http://www.gravatar.com/avatar/?d=mp",
+      name: map['name'] ?? '',
+      profilePic: map['profilePic'] ?? '',
     );
   }
 
