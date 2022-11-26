@@ -27,7 +27,6 @@ class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   bool state = true;
   late final AnimationController _animationController;
-  late final Animation<double> _animation;
 
   @override
   void initState() {
@@ -36,10 +35,6 @@ class _MyHomePageState extends State<MyHomePage>
       duration: const Duration(seconds: 2),
       vsync: this,
       lowerBound: 0.5,
-    );
-    _animation = CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.linear,
     );
   }
 
@@ -60,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage>
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ScaleTransition(
-              scale: _animation,
+              scale: _animationController,
               child: Container(
                 width: 200,
                 height: 200,
