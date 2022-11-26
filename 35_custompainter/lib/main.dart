@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Custom Painter"),
+        title: const Text("Art Class"),
       ),
       body: CustomPaint(
         painter: MyPainter(),
@@ -44,7 +44,6 @@ class MyPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint linePaint = Paint()..strokeWidth = 10;
-
     canvas.drawLine(const Offset(50, 150), const Offset(150, 220), linePaint);
     canvas.drawLine(
         Offset(size.width - 50, 150), Offset(size.width - 150, 220), linePaint);
