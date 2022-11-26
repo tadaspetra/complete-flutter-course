@@ -27,8 +27,7 @@ class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   bool state = true;
   late final AnimationController _animationController = AnimationController(
-      duration: const Duration(seconds: 2), vsync: this, lowerBound: 0.5)
-    ..repeat(reverse: true);
+      duration: const Duration(seconds: 2), vsync: this, lowerBound: 0.5);
 
   late final Animation<double> _animation = CurvedAnimation(
     parent: _animationController,
@@ -69,6 +68,11 @@ class _MyHomePageState extends State<MyHomePage>
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          if (state) {
+            _animationController.forward();
+          } else {
+            _animationController.reverse();
+          }
           setState(() {
             state = !state;
           });
