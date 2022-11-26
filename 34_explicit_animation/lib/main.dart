@@ -26,13 +26,23 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   bool state = true;
-  late final AnimationController _animationController = AnimationController(
-      duration: const Duration(seconds: 2), vsync: this, lowerBound: 0.5);
+  late final AnimationController _animationController;
+  late final Animation<double> _animation;
 
-  late final Animation<double> _animation = CurvedAnimation(
-    parent: _animationController,
-    curve: Curves.linear,
-  );
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+      lowerBound: 0.5,
+    );
+    _animation = CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.linear,
+    );
+  }
+
   @override
   void dispose() {
     _animationController.dispose();
