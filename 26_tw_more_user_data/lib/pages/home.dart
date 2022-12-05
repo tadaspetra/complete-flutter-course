@@ -31,6 +31,7 @@ class Home extends ConsumerWidget {
           backgroundImage: NetworkImage(
             ref.watch(userProvider).user.profilePic,
           ),
+          onBackgroundImageError: (exception, stackTrace) {},
         )
       ]),
     );

@@ -33,6 +33,9 @@ class MyApp extends ConsumerWidget {
           }),
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
+          iconTheme: IconThemeData(
+            color: Colors.black, //change your color here
+          ),
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
           titleTextStyle: TextStyle(
