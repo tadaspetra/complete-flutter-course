@@ -8,44 +8,55 @@ import 'package:miniproject/pages/home.dart';
 import 'package:miniproject/providers/todo_provider.dart';
 
 void main() {
-  testWidgets('default state', (tester) async {
+  testWidgets("default state", (tester) async {
     await tester.pumpWidget(const ProviderScope(child: MyApp()));
 
-    // The state is `0` once again, with no tearDown/setUp needed
-    expect(find.text('Add a todo using the button below'), findsOneWidget);
+    Finder defaultText = find.text("Add a todo using the button below");
+
+    expect(defaultText, findsOneWidget);
+  });
+  testWidgets("completed todos show up on completed page", (tester) async {
+    TodoListNotifier notifier = TodoListNotifier(
+      <Todo>[Todo(todoId: 0, content: "record video", completed: true)],
+    );
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          todoProvider.overrideWith((ref) => notifier),
+        ],
+        child: const MaterialApp(home: CompletedTodo()),
+      ),
+    );
+    Finder completedText = find.text("record video");
+
+    expect(completedText, findsOneWidget);
   });
 
-  testWidgets('completed todos show up on completed page', (tester) async {
+  testWidgets("slide and delete a todo", (tester) async {
     TodoListNotifier notifier = TodoListNotifier(
-        <Todo>[Todo(todoId: 0, content: "hello", completed: true)]);
-    await tester.pumpWidget(ProviderScope(
-      overrides: [
-        todoProvider.overrideWith((ref) => notifier),
-      ],
-      child: const MaterialApp(
-        home: CompletedTodo(),
+      <Todo>[Todo(todoId: 0, content: "record video", completed: false)],
+    );
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          todoProvider.overrideWith((ref) => notifier),
+        ],
+        child: const MaterialApp(home: MyHomePage()),
       ),
-    ));
-    expect(find.text("hello"), findsOneWidget);
-  });
+    );
+    Finder completedText = find.text("record video");
 
-  testWidgets('delete todo', (tester) async {
-    TodoListNotifier notifier = TodoListNotifier(
-        <Todo>[Todo(todoId: 0, content: "hello", completed: false)]);
-    await tester.pumpWidget(ProviderScope(
-      overrides: [
-        todoProvider.overrideWith((ref) => notifier),
-      ],
-      child: const MaterialApp(
-        home: MyHomePage(),
-      ),
-    ));
-    expect(find.text("hello"), findsOneWidget);
+    expect(completedText, findsOneWidget);
 
-    await tester.timedDrag(find.byKey(const ValueKey("0")),
-        const Offset(200, 0), const Duration(seconds: 1));
-    await tester.tap(find.byKey(const ValueKey("0delete")));
+    Finder draggableWidget = find.byKey(const ValueKey("0"));
+    Finder deleteButton = find.byKey(const ValueKey("0delete"));
+    await tester.timedDrag(
+        draggableWidget, const Offset(200, 0), const Duration(seconds: 1));
     await tester.pump();
-    expect(find.text("Add a todo using the button below"), findsOneWidget);
+    await tester.tap(deleteButton);
+    await tester.pump();
+
+    Finder defaultText = find.text("Add a todo using the button below");
+    expect(defaultText, findsOneWidget);
   });
 }
