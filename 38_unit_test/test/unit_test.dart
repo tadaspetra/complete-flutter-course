@@ -10,26 +10,26 @@ void main() {
     notifier = container.read(todoProvider.notifier);
   });
 
-  test("Todo list starts empty", () {
+  test('todo list starts empty', () {
     expect(notifier.debugState, []);
   });
 
-  test("Add todo", () {
-    notifier.addTodo("First Todo Item");
-    expect(notifier.debugState[0].content, "First Todo Item");
+  test('add todo', () {
+    notifier.addTodo("record video");
+    expect(notifier.debugState[0].content, "record video");
   });
 
-  test("Delete todo", () {
-    notifier.addTodo("First Todo Item");
-    expect(notifier.debugState[0].content, "First Todo Item");
+  test('delete todo', () {
+    notifier.addTodo("record video");
+    expect(notifier.debugState[0].content, "record video");
 
     notifier.deleteTodo(0);
     expect(notifier.debugState, []);
   });
 
-  test("Complete todo", () {
-    notifier.addTodo("First Todo Item");
-    expect(notifier.debugState[0].content, "First Todo Item");
+  test('complete todo', () {
+    notifier.addTodo("record video");
+    expect(notifier.debugState[0].content, "record video");
     expect(notifier.debugState[0].completed, false);
 
     notifier.completeTodo(0);
