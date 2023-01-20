@@ -29,7 +29,7 @@ class Home extends ConsumerWidget {
         ),
         leading: Builder(builder: (context) {
           return GestureDetector(
-            key: const ValueKey("navBar"),
+            key: const ValueKey("profilePic"),
             onTap: () => Scaffold.of(context).openDrawer(),
             child: Padding(
               padding: const EdgeInsets.all(8.0),

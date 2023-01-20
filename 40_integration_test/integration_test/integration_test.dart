@@ -5,36 +5,32 @@ import 'package:integration_test/integration_test.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  testWidgets("log in, check for tweet, log out", (tester) async {
+    app.main();
+    await tester.pumpAndSettle();
+    Finder loginText = find.text("Log in to Twitter");
+    expect(loginText, findsOneWidget);
 
-  group('end-to-end test', () {
-    testWidgets('log in, check for tweet, log out', (tester) async {
-      app.main();
-      await tester.pumpAndSettle();
+    Finder loginEmail = find.byKey(const ValueKey("loginEmail"));
+    Finder loginPassword = find.byKey(const ValueKey("loginPassword"));
+    Finder loginButton = find.byKey(const ValueKey("loginButton"));
+    Finder profilePic = find.byKey(const ValueKey("profilePic"));
+    Finder signOut = find.byKey(const ValueKey("signOut"));
 
-      expect(find.text('Log in to Twitter'), findsOneWidget);
+    await tester.enterText(loginEmail, "tadas4@gmail.com");
+    await tester.enterText(loginPassword, "123456");
+    await tester.tap(loginButton);
+    await tester.pumpAndSettle();
 
-      final Finder loginEmail = find.byKey(const ValueKey('loginEmail'));
-      final Finder loginPassword = find.byKey(const ValueKey('loginPassword'));
-      final Finder loginButton = find.byKey(const ValueKey('login'));
+    Finder tweetName = find.text("Tadas Petra");
+    expect(tweetName, findsOneWidget);
 
-      await tester.enterText(loginEmail, "tadas4@gmail.com");
-      await tester.enterText(loginPassword, "123456");
-      await tester.tap(loginButton);
+    await tester.tap(profilePic);
+    await tester.pumpAndSettle();
 
-      await tester.pumpAndSettle();
+    await tester.tap(signOut);
+    await tester.pumpAndSettle();
 
-      expect(find.text('Tadas Petra'), findsOneWidget);
-
-      final Finder navBar = find.byKey(const ValueKey('navBar'));
-      final Finder signOut = find.byKey(const ValueKey('signOut'));
-
-      await tester.tap(navBar);
-      await tester.pumpAndSettle();
-
-      await tester.tap(signOut);
-      await tester.pumpAndSettle();
-
-      expect(find.text('Log in to Twitter'), findsOneWidget);
-    });
+    expect(loginText, findsOneWidget);
   });
 }
