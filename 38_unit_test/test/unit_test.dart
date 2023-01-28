@@ -10,13 +10,13 @@ void main() {
     notifier = container.read(todoProvider.notifier);
   });
 
-  test('todo list starts empty', () {
-    expect(notifier.debugState, []);
-  });
-
   test('add todo', () {
     notifier.addTodo("record video");
     expect(notifier.debugState[0].content, "record video");
+  });
+
+  test('todo list starts empty', () {
+    expect(notifier.debugState, []);
   });
 
   test('delete todo', () {
