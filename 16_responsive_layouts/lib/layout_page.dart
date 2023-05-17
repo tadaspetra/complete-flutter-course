@@ -14,9 +14,9 @@ class _LayoutPageState extends State<LayoutPage> {
         Expanded(
           child: Container(
             color: Colors.yellow,
-            child: Column(
+            child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 Text("Column 1"),
               ],
             ),
@@ -25,9 +25,9 @@ class _LayoutPageState extends State<LayoutPage> {
         Expanded(
           child: Container(
             color: Colors.lightGreen,
-            child: Column(
+            child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 Text("Column 2"),
               ],
             ),
@@ -43,9 +43,9 @@ class _LayoutPageState extends State<LayoutPage> {
         Expanded(
           child: Container(
             color: Colors.yellow,
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 Text("Row 1"),
               ],
             ),
@@ -54,9 +54,9 @@ class _LayoutPageState extends State<LayoutPage> {
         Expanded(
           child: Container(
             color: Colors.lightGreen,
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 Text("Row 2"),
               ],
             ),

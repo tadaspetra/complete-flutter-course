@@ -1,23 +1,11 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MyHomePage(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
+  runApp(const MaterialApp(
+    home: MyHomePage(),
+  ));
 }
 
 class MyHomePage extends StatefulWidget {
@@ -29,12 +17,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Widget> tiles = [
-    ColorTile(
-      key: UniqueKey(),
-    ),
-    ColorTile(
-      key: UniqueKey(),
-    )
+    const ColorTile(key: ValueKey(true)),
+    const ColorTile(),
   ];
 
   _swapColors() {
@@ -75,7 +59,8 @@ class ColorTile extends StatefulWidget {
 }
 
 class _ColorTileState extends State<ColorTile> {
-  Color randomColor = Colors.primaries[Random().nextInt(Colors.primaries.length)];
+  Color randomColor =
+      Colors.primaries[Random().nextInt(Colors.primaries.length)];
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -70,9 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
           const SizedBox(
             height: 10,
           ),
-          Row(
+          const Row(
             mainAxisSize: MainAxisSize.min,
-            children: const [
+            children: [
               Text("Tadas "),
               Text("Andrei"),
             ],

@@ -1,10 +1,10 @@
 import 'package:context/second.dart';
 import 'package:context/state.dart';
-import 'package:context/state_holder.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const AppStateHolder(child: MyApp()));
+  var state = AppState(counter: 1);
+  runApp(Provider(state, child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -36,8 +36,7 @@ class HomePage extends StatelessWidget {
               'You have pushed the button this many times:',
             ),
             Text(
-              '${Provider.of(context).counter}',
-              style: Theme.of(context).textTheme.headline4,
+              Provider.of(context).counter.toString(),
             ),
             TextButton(
               onPressed: () {
@@ -50,7 +49,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => AppStateHolder.of(context).add(),
+        onPressed: () => {}, // AppStateHolder.of(context).add(),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),

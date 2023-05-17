@@ -20,7 +20,7 @@ class SecondPage extends StatelessWidget {
             ),
             Text(
               '${Provider.of(context).counter}',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),
