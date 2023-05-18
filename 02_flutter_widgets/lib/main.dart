@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const TadasApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class TadasApp extends StatelessWidget {
+  const TadasApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,55 +36,79 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Widget Demo"),
+        title: const Text("Default App"),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            height: 200,
-            width: 200,
-            margin: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black, width: 20),
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.blue,
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 200,
+              margin: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                border: Border.all(width: 10),
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.lightBlue,
+              ),
+              child: PageView(
+                children: const [
+                  Text(
+                    "Tadas",
+                  ),
+                  Text(
+                    "Andrei",
+                  ),
+                  Text(
+                    "Last Entry",
+                  ),
+                  Text(
+                    "Tadas",
+                  ),
+                  Text(
+                    "Andrei",
+                  ),
+                  Text(
+                    "Last Entry",
+                  ),
+                  Text(
+                    "Tadas",
+                  ),
+                  Text(
+                    "Andrei",
+                  ),
+                  Text(
+                    "Last Entry",
+                  ),
+                  Text(
+                    "Tadas",
+                  ),
+                  Text(
+                    "Andrei",
+                  ),
+                  Text(
+                    "Last Entry",
+                  ),
+                  Text(
+                    "Tadas",
+                  ),
+                  Text(
+                    "Andrei",
+                  ),
+                  Text(
+                    "Last Entry",
+                  ),
+                ],
+              ),
             ),
-            child: PageView(
-              children: const [
-                Text(
-                  "Tadas",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                Text(
-                  "Page 2",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                Text(
-                  "Last Page",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-              ],
+            const Text(
+              'You have pushed the button this many times:',
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text("Tadas "),
-              Text("Andrei"),
-            ],
-          ),
-          const Text(
-            'You have pushed the button this many times:',
-          ),
-          Text(
-            '$_counter',
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-        ],
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
